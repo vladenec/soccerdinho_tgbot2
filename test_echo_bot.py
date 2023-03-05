@@ -4,7 +4,6 @@ import logging
 from aiogram import Bot, Dispatcher, executor, types
 
 # задаем уровень логов
-
 logging.basicConfig(level=logging.INFO)
 
 # инициализируем бота
