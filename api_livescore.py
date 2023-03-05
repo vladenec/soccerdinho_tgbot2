@@ -3,7 +3,7 @@ import pandas as pd
 import datetime
 import time
 
-update_time = 30  # в секундах
+update_time = 5  # в секундах
 
 
 #        else:
@@ -128,5 +128,21 @@ def request_livescore_all():
         request_livescore_all()
 
 
+def request_livescore_all_new():
+    old_df = get_live_data()  ##.query('Competition in @filter').reset_index(drop=True)
+    time.sleep(update_time)
+    df = get_live_data()  ##.query('Competition in @filter').reset_index(drop=True)
+    # print("Прошел круг", a)
+    if len(df) != 0 and len(old_df) != 0:
+        message_to_send = str(get_message(df, old_df))
+        if message_to_send != 'None':
+            return (message_to_send)
+    else:
+        request_livescore_all_new()
+
+
 def new_func():
     print(1)
+
+
+request_livescore_all_new()
